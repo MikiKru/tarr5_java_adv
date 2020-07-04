@@ -84,6 +84,23 @@ public class JavaCollectionsExample {
         uniqueRoles.removeAll(getNonUiqueRoles());
         return uniqueRoles;
     }
+    private Map<Integer, String> decimalToRoman = new HashMap<>();
+    private Map<String, Integer> romanToDecimal = new HashMap<>();
+    public void generateValuesIntoMap(){
+        decimalToRoman.put(0, "0");
+        decimalToRoman.put(1, "I");
+        decimalToRoman.put(2, "II");
+        decimalToRoman.put(3, "III");
+        decimalToRoman.put(4, "IV");
+        decimalToRoman.put(5, "V");
+        System.out.println(decimalToRoman);
+    }
+    public void generateMapRomanToDecimal(){
+        for(Integer key : decimalToRoman.keySet()){
+            romanToDecimal.put(decimalToRoman.get(key), key);
+        }
+        System.out.println(romanToDecimal);
+    }
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
@@ -96,7 +113,10 @@ public class JavaCollectionsExample {
         System.out.println("\nAll roles: " + ex.getAllRoles());
         System.out.println("Non-unique roles: " + ex.getNonUiqueRoles());
         System.out.println("Unique roles: " + ex.getUniqueRoles());
-
+        ex.generateValuesIntoMap();
+        ex.generateMapRomanToDecimal();
+        System.out.println("5 dziesiętna to: " + ex.decimalToRoman.get(5));
+        System.out.println("II rzymska to: " + ex.romanToDecimal.get("II"));
     }
 }
 
