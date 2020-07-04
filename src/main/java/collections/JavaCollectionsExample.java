@@ -36,20 +36,34 @@ public class JavaCollectionsExample {
     public boolean findElement(List<String> names, String name){
         return names.contains(name);
     }
+    // tablica widoczna w całej klasie
+    List<String> names = new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala"));
+
     public void removeElement(String name){
-        List<String> names = new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala"));
         System.out.println(names);
         names.remove(name);     // usunięcie obiektu o wartości name podanej w argumencie metody
         System.out.println(names);
     }
-
+    public void removeAllTheSameElements(String name){
+        System.out.println(names);
+        names.removeAll(Arrays.asList(name));     // usunięcie obiektu o wartości name podanej w argumencie metody
+        System.out.println(names);
+    }
+    // zmień piewrszy i ostatni element na Adam w liście names
+    public void updateFirstAndLastElement(String name){
+        // ???
+    }
+    // wypisz wszystkie elementy znajdujące się na parzystych indeksach listy names
+    public void getAllElementsWithOddIndex(){
+        // ???
+    }
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
 //        ex.listOperations();
 //        System.out.println("Wynik: " +
 //                ex.findElement(new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala")), "Ala"));
-    ex.removeElement("Ala");
+    ex.removeAllTheSameElements("Ala");
     }
 }
 
