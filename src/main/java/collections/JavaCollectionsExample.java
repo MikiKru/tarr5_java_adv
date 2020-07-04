@@ -101,6 +101,24 @@ public class JavaCollectionsExample {
         }
         System.out.println(romanToDecimal);
     }
+    private Deque<String> messages = new ArrayDeque<>();
+
+    public void sendMessage(String message){
+        messages.addLast(message);
+        System.out.println(messages);
+    }
+    public void receiveMessage()  {
+        try {
+            while (!messages.isEmpty()) {
+                Thread.currentThread().sleep(5000);         // uśpienie programu na 1000ms
+                System.out.println("Odebrano wiadomość: " + messages.removeFirst());
+                System.out.println("Pozostałe wiadomości: " + messages);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public void communicationService(){ }
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
@@ -117,6 +135,10 @@ public class JavaCollectionsExample {
         ex.generateMapRomanToDecimal();
         System.out.println("5 dziesiętna to: " + ex.decimalToRoman.get(5));
         System.out.println("II rzymska to: " + ex.romanToDecimal.get("II"));
+        ex.sendMessage("A");
+        ex.sendMessage("B");
+        ex.sendMessage("C");
+        ex.receiveMessage();
     }
 }
 
