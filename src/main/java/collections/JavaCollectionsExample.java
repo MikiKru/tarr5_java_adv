@@ -79,8 +79,10 @@ public class JavaCollectionsExample {
         return nonUniqueRoles;
     }
     // wypisz wszystkie unikatowe elementy obu zbiorów
-    public Set<String> getUniqueRoels(){
-
+    public Set<String> getUniqueRoles(){
+        Set<String> uniqueRoles = getAllRoles();
+        uniqueRoles.removeAll(getNonUiqueRoles());
+        return uniqueRoles;
     }
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
@@ -92,7 +94,9 @@ public class JavaCollectionsExample {
         ex.updateFirstAndLastElement("X");
         ex.getAllElementsWithOddIndex();
         System.out.println("\nAll roles: " + ex.getAllRoles());
-        System.out.println("Unique roles: " + ex.getNonUiqueRoles());
+        System.out.println("Non-unique roles: " + ex.getNonUiqueRoles());
+        System.out.println("Unique roles: " + ex.getUniqueRoles());
+
     }
 }
 
