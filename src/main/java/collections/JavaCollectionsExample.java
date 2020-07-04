@@ -30,13 +30,26 @@ public class JavaCollectionsExample {
         List<String> names = new ArrayList<>();
         // utowrzenie listy zainicjowanej wartościami
         List<Double> params = new ArrayList<>(Arrays.asList(1.2,1.44,1.11,4.));
-        System.out.println();
+        System.out.println(names);
+        System.out.println(params);
     }
-
+    public boolean findElement(List<String> names, String name){
+        return names.contains(name);
+    }
+    public void removeElement(String name){
+        List<String> names = new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala"));
+        System.out.println(names);
+        names.remove(name);     // usunięcie obiektu o wartości name podanej w argumencie metody
+        System.out.println(names);
+    }
 
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
+//        ex.listOperations();
+//        System.out.println("Wynik: " +
+//                ex.findElement(new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala")), "Ala"));
+    ex.removeElement("Ala");
     }
 }
 
