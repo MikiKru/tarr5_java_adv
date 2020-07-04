@@ -2,6 +2,7 @@ package collections;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class JavaCollectionsExample {
     public void arrayOperations(){
@@ -24,9 +25,25 @@ public class JavaCollectionsExample {
         }
         System.out.println("\nPoza try-catch");
     }
+    public void listOperations(){
+        // utworzenie pustej listy
+        List<String> names = new ArrayList<>();
+        // utowrzenie listy zainicjowanej wartościami
+        List<Double> params = new ArrayList<>(Arrays.asList(1.2,1.44,1.11,4.));
+        System.out.println();
+    }
+
 
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
-        ex.arrayOperations();
+//        ex.arrayOperations();
     }
 }
+
+
+
+
+
+
+
+
