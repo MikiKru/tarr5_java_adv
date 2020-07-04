@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JavaCollectionsExample {
+    // pola globalne
+    private List<String> names = new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala"));
+
     public void arrayOperations(){
         try {       // między nawiasami wprowadzamy kod, który może generować wyjątek
             // utworzenie tablicy 10-cio elementowej
@@ -36,8 +39,6 @@ public class JavaCollectionsExample {
     public boolean findElement(List<String> names, String name){
         return names.contains(name);
     }
-    // tablica widoczna w całej klasie
-    List<String> names = new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala"));
 
     public void removeElement(String name){
         System.out.println(names);
@@ -51,11 +52,15 @@ public class JavaCollectionsExample {
     }
     // zmień piewrszy i ostatni element na Adam w liście names
     public void updateFirstAndLastElement(String name){
-        // ???
+        names.set(0, name);
+        names.set(names.size() - 1, name);
+        System.out.println(names);
     }
     // wypisz wszystkie elementy znajdujące się na parzystych indeksach listy names
     public void getAllElementsWithOddIndex(){
-        // ???
+        for(int i = 0; i < names.size(); i = i + 2){
+            System.out.print(names.get(i) + " ");
+        }
     }
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
@@ -63,7 +68,9 @@ public class JavaCollectionsExample {
 //        ex.listOperations();
 //        System.out.println("Wynik: " +
 //                ex.findElement(new ArrayList<>(Arrays.asList("Jan","Ala","Ola","Ela","Ala")), "Ala"));
-    ex.removeAllTheSameElements("Ala");
+//    ex.removeAllTheSameElements("Ala");
+        ex.updateFirstAndLastElement("X");
+        ex.getAllElementsWithOddIndex();
     }
 }
 
