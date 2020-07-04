@@ -2,9 +2,12 @@ package oop.model;
 // wzorzec JavaBeans
 // 1. prywatne pole klasowe
 
+
 import oop.model.enums.Gender;
+import oop.model.enums.Role;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 // Klasa modelu -> klasa determiująca strukturę danych
 public class User {
@@ -16,7 +19,7 @@ public class User {
     // płeć jest typem wyliczeniowym
     private Gender gender;
     // zbiór ról
-    
+    private Set<Role> roles;
     private LocalDateTime registrationDateTime;
     private boolean status;
     private boolean removed;
