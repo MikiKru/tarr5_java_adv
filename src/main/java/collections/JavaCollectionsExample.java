@@ -1,8 +1,6 @@
 package collections;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class JavaCollectionsExample {
     // pola globalne
@@ -62,6 +60,28 @@ public class JavaCollectionsExample {
             System.out.print(names.get(i) + " ");
         }
     }
+    private Set<String> roles1 = new HashSet<>(Arrays.asList("ADMIN", "USER"));
+    private Set<String> roles2 = new HashSet<>(Arrays.asList("USER", "VIEWER", "MODERATOR"));
+    // jakie mamy wszystkie role w serwisie www
+    public Set<String> getAllRoles(){
+        // utworzenie pustego podręczngo zbioru ról z widocznością tylko w obrębie metody
+        Set<String> allRoles = new TreeSet<>();
+        // dodanie ról do tego zbioru pochodzących z zbiorów roles1 i roles2
+        allRoles.addAll(roles1);
+        allRoles.addAll(roles2);
+        return allRoles;
+    }
+    // jakie role się powtarzają w obu zbiorach
+    public Set<String> getNonUiqueRoles(){
+        Set<String> nonUniqueRoles = new TreeSet<>();
+        nonUniqueRoles.addAll(roles1);
+        nonUniqueRoles.retainAll(roles2);
+        return nonUniqueRoles;
+    }
+    // wypisz wszystkie unikatowe elementy obu zbiorów
+    public Set<String> getUniqueRoels(){
+
+    }
     public static void main(String[] args) {
         JavaCollectionsExample ex = new JavaCollectionsExample();
 //        ex.arrayOperations();
@@ -71,6 +91,8 @@ public class JavaCollectionsExample {
 //    ex.removeAllTheSameElements("Ala");
         ex.updateFirstAndLastElement("X");
         ex.getAllElementsWithOddIndex();
+        System.out.println("\nAll roles: " + ex.getAllRoles());
+        System.out.println("Unique roles: " + ex.getNonUiqueRoles());
     }
 }
 
