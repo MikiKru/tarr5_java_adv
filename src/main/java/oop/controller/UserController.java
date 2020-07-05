@@ -36,24 +36,54 @@ public class UserController implements UserControllerTempl {
             System.out.println("Dodano nowego użytkownika: " + user.getEmail());
     }
     @Override
-    public List<User> findAllUsers() {
-        return users;
-    }
-
-    @Override
     public boolean loginUser(String email, String password) {
+        for (User user : users){
+            // porównanie e-maila i hashów haseł
+            if(user.getEmail().equals(email) && user.getPassword().equals(passwordEncoder(password))){
+                System.out.println("Zalogowano użytkownika: " + user.getEmail());
+                return true;
+            }
+        }
+        System.out.println("Błąd logowania");
         return false;
     }
 
     @Override
+    public List<User> findAllUsers() {
+        return users;
+    }
+    // ------------------------------------------------
+    @Override
     public User findUserById(int userId) {
+        for(User user : users){
+            if(user.getUserId() == userId){
+                System.out.println("Znaleziono użytkownika : " + user);
+                return user;
+            }
+        }
+        System.out.println("Nie znaleziono użytkownika o id=" + userId);
         return null;
     }
-
     @Override
     public void updateUserPassword(int userId, String newPassword) {
-
+        // 1. pobranie użytkownika z listy na podstawie userId
+        User user = findUserById(userId);
+        // 2. Sprawdzenie czy użytkownik istnieje
+        if(user != null) {
+            // 3. zmiana hasła i zapisanie hash-u tego hasła
+            user.setPassword(passwordEncoder(newPassword));
+            System.out.println("Zmieniono hasło");
+        } else {
+            System.out.println("Nie zmieniono hasła");
+        }
     }
+    // ------------------------------------------------
+
+
+
+
+
+
 
     @Override
     public void deleteUserById(int userId) {

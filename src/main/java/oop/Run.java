@@ -16,7 +16,7 @@ public class Run {
         Scanner scanner = new Scanner(System.in);
         List<User> users = UserControllerTempl.users;
         while(true) {
-            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \nQ. Wyjście");
+            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \nQ.Wyjście");
             String choice = scanner.nextLine().toUpperCase();
             if(choice.equals("1")){
                 System.out.println("Podaj imię:");
@@ -55,8 +55,14 @@ public class Run {
                 //---
 
                 uc.registerUser(new User(name, lastName, email, password, phone, gender));
-            } else if(choice.equals("2")){
+            } else if(choice.equals("2")) {
                 uc.findAllUsers().forEach(user -> System.out.println(user));
+            } else if (choice.equals("3")){
+                System.out.println("Podaj email:");
+                String email = scanner.nextLine();
+                System.out.println("Podaj hasło:");
+                String password = scanner.nextLine();
+                uc.loginUser(email, password);
             } else if (choice.equals("Q")){
                 System.out.println("Wyjście");
                 break;
