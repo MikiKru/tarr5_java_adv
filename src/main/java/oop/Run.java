@@ -1,5 +1,6 @@
 package oop;
 
+import oop.controller.InputOutputController;
 import oop.controller.UserController;
 import oop.controller.UserControllerTempl;
 import oop.model.User;
@@ -10,12 +11,16 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class Run {
+public class Run extends InputOutputController {
+
     public static void main(String[] args) {
         // 1. Wywołanie obiektu klasy UserController
         UserController uc = new UserController();
         Scanner scanner = new Scanner(System.in);
-        List<User> users = UserControllerTempl.users;
+        Run run = new Run();
+        // pobieranie danych z pliku
+        run.readUsersFromFile();
+        // -------------------------
         while(true) {
             System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \nQ.Wyjście");
             String choice = scanner.nextLine().toUpperCase();
@@ -75,6 +80,7 @@ public class Run {
                     System.out.println("Błędny id");
                 }
             } else if (choice.equals("Q")){
+                run.saveUsersToFile();
                 System.out.println("Wyjście");
                 break;
             } else {
