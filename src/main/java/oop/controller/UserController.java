@@ -14,6 +14,10 @@ public class UserController implements UserControllerTempl {
         users.add(user);
         System.out.println("Dodano nowego użytkownika: " + user.getEmail());
     }
+    @Override
+    public List<User> findAllUsers() {
+        return users;
+    }
 
     @Override
     public boolean loginUser(String email, String password) {
@@ -40,10 +44,7 @@ public class UserController implements UserControllerTempl {
 
     }
 
-    @Override
-    public List<User> findAllUsers() {
-        return null;
-    }
+
 
     @Override
     public List<User> findAllUsersOrderByArg(UserField userField, boolean asc) {
