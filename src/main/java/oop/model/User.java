@@ -29,6 +29,8 @@ public class User {
     private boolean status = true;
     private boolean removed = false;
 
+
+
     public User(String name, String lastName, String email, String password,
                 String phone, Gender gender) {
         this.name = name;
