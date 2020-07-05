@@ -45,7 +45,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("| %3d | %15s | %15s | %10s | %10s | %9s | %10s | %40s | %25s | %6s | %6s |",
+        return String.format("| %3d | %15s | %15s | %10s | %10s | %11s | %10s | %40s | %25s | %6s | %6s |",
                 userId, name, lastName, email, password, phone, gender.getGenderName(), roles, registrationDateTime,
                 status, removed);
     }

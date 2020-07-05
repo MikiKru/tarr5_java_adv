@@ -15,9 +15,9 @@ public interface UserControllerTempl {
     // pole statyczne finalne
     List<User> users = new ArrayList<>(
             Arrays.asList(
-                    new User("Adam", "Kowalski", "ak@ak.pl", "ak", "123123123", Gender.MAN),
-                    new User("Jan", "Nowak", "jn@jn.pl", "jn", "333123123", Gender.MAN),
-                    new User("Anna", "Lis", "al@al.pl", "al", "444123123", Gender.WOMAN)
+                    new User("Adam", "Kowalski", "ak@ak.pl", "ak", "123-123-123", Gender.MAN),
+                    new User("Jan", "Nowak", "jn@jn.pl", "jn", "333-123-123", Gender.MAN),
+                    new User("Anna", "Lis", "al@al.pl", "al", "444-231-823", Gender.WOMAN)
             )
     );
 

@@ -25,6 +25,13 @@ public class Run {
                 String lastName = scanner.nextLine();
                 System.out.println("Podaj email:");
                 String email = scanner.nextLine();
+                //---
+                String emailPattern = "^\\S{1,}[@]\\S{1,}$";    // \S - any non-whitespace character
+                if(!Pattern.matches(emailPattern, email)){
+                    System.out.println("Błędny adres e-mail");
+                    continue;
+                }
+                //---
                 System.out.println("Podaj hasło:");
                 String password = scanner.nextLine();
                 System.out.println("Podaj płeć (M/K):");
