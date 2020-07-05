@@ -73,7 +73,6 @@ public class Run {
                     uc.updateUserPassword(userId, newPassword);
                 } catch (InputMismatchException e){
                     System.out.println("Błędny id");
-                    continue;
                 }
             } else if (choice.equals("Q")){
                 System.out.println("Wyjście");
