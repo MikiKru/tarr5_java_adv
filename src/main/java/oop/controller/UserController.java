@@ -20,7 +20,7 @@ public class UserController implements UserControllerTempl {
             // Zapisanie tablicy liczb w typie String
             String passwordHashTxt = "";
             for (byte digit : passwordHash){
-                passwordHashTxt += digit;
+                passwordHashTxt += String.format("%x",digit);
             }
             return passwordHashTxt;
         } catch (NoSuchAlgorithmException e) {
