@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 public class SimpleStreamApi {
     List<Double> numbers = new ArrayList<>(
             Arrays.asList(13.11, 4.333, 6.43, -7., 1.11, 7.66, 9.99999)
+//          Arrays.asList(13.11, 4.33, 6.43, 7.00, 1.11, 7.60, 9.999908)
     );
     // metoda wypisująca wszystkie liczby jedna pod drugą
     public void getAllNumbers(){
@@ -47,13 +48,30 @@ public class SimpleStreamApi {
             return 0.0;
         }
     }
+    // metoda zwracająca średnią wartość w liście
+    public double getAvg(){
+        if(numbers.stream().mapToDouble(value -> Double.valueOf(value)).average().isPresent()){
+            return numbers.stream().mapToDouble(value -> Double.valueOf(value)).average().getAsDouble();
+        }
+        System.out.println("Lista jest pusta");
+        return 0.0;
+    }
+    // metoda wypisująca liczby większe niż wartość w argumencie
+    public void getNumbersGreatherThan(double treshold){
+        numbers.stream()
+                .filter(number -> number > treshold)    // filtrowanie na podstawie warunku
+                .forEach(number -> System.out.print(number + " "));
+    }
+
     public static void main(String[] args) {
         SimpleStreamApi ssa = new SimpleStreamApi();
 //        ssa.getAllNumbers();
 //        ssa.getAllNumbersCSV("; ");
 //        ssa.getAllRoundedNumbers(1);
-        System.out.println("Suma liczb: " + ssa.getSumOfAllNumbers());
-        System.out.println("MIN: " + ssa.getMin());
-        System.out.println("MAX: " + ssa.getMax());
+//        System.out.println("Suma liczb: " + ssa.getSumOfAllNumbers());
+//        System.out.println("MIN: " + ssa.getMin());
+//        System.out.println("MAX: " + ssa.getMax());
+//        System.out.println("AVG: " + ssa.getAvg());
+        ssa.getNumbersGreatherThan(5);
     }
 }
