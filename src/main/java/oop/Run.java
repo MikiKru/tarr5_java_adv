@@ -22,7 +22,8 @@ public class Run extends InputOutputController {
         run.readUsersFromFile();
         // -------------------------
         while(true) {
-            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło \nQ.Wyjście");
+            System.out.println("Co chcesz zrobic? \n1.Rejestracja \n2.Lista użytkowników \n3.Logowanie \n4.Zmień hasło " +
+                    "\n5.Usuń użytkownika \n6.Wypisz posortowanych użytkowników \nQ.Wyjście");
             String choice = scanner.nextLine().toUpperCase();
             if(choice.equals("1")){
                 System.out.println("Podaj imię:");
@@ -69,16 +70,32 @@ public class Run extends InputOutputController {
                 System.out.println("Podaj hasło:");
                 String password = scanner.nextLine();
                 uc.loginUser(email, password);
-            } else if (choice.equals("4")){
+            } else if (choice.equals("4")) {
                 try {
                     System.out.println("Podaj id:");
                     int userId = Integer.valueOf(scanner.nextLine());
                     System.out.println("Podaj nowe hasło:");
                     String newPassword = scanner.nextLine();
                     uc.updateUserPassword(userId, newPassword);
+                } catch (InputMismatchException e) {
+                    System.out.println("Błędny id");
+                }
+            } else if (choice.equals("5")){
+                try {
+                    System.out.println("Podaj id użytkownika, którego chcesz usunąć");
+                    int userId = Integer.valueOf(scanner.nextLine());
+                    uc.deleteUserById(userId);
                 } catch (InputMismatchException e){
                     System.out.println("Błędny id");
                 }
+            } else if (choice.equals("6")){
+                System.out.println("Wybierz typ sortowania ASC - rosnąco, DESC - malejąco");
+                boolean asc = true;
+                String decision = scanner.nextLine();
+                if(decision.toUpperCase().equals("DESC")){
+                    asc = false;
+                }
+                uc.findAllUsersOrderByEmail(asc).forEach(user -> System.out.println(user));
             } else if (choice.equals("Q")){
                 run.saveUsersToFile();
                 System.out.println("Wyjście");

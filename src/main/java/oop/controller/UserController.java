@@ -6,8 +6,10 @@ import oop.model.enums.Role;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 // Klasa controllera - odpowiedzialna za obsługę i implementację logiki biznesowej aplikacji
 public class UserController implements UserControllerTempl {
@@ -81,17 +83,35 @@ public class UserController implements UserControllerTempl {
 
     @Override
     public void deleteUserById(int userId) {
-
+        for(User user : users){
+            if(user.getUserId() == userId){
+                users.remove(user);
+                System.out.println("Usunięto użytkownika: " + user.getEmail());
+                break;
+            }
+        }
+        if(findUserById(userId) == null){
+            System.out.println("Nie ma użytkownika o id="+userId);
+        }
     }
+    @Override
+    public List<User> findAllUsersOrderByEmail(boolean asc) {
+        if(asc) {       // sortowanie rosnące A-Z
+            return users.stream()                                           // zamiana List<User> -> Stream<User>
+                    .sorted(Comparator.comparing(User::getEmail))           // SortedStream<User>
+                    .collect(Collectors.toList());                          // zamiana SortedStream<User> -> List<User>
+        } else {        // sortowanie malejące Z-A
+            return users.stream()                                                   // zamiana List<User> -> Stream<User>
+                    .sorted(Comparator.comparing(User::getEmail).reversed())        // SortedStream<User>
+                    .collect(Collectors.toList());
+        }
+        }
 
+    // ZADANIE DOMOWE -------------------------------------------------------
     @Override
     public void updateRole(int userId, Set<Role> newRoles) {
 
     }
+    // ----------------------------------------------------------------------
 
-    @Override
-    public List<User> findAllUsersOrderByArg(UserField userField, boolean asc) {
-
-        return null;
-    }
 }

@@ -44,6 +44,6 @@ public interface UserControllerTempl {
     // wypisanie wszystkich użytkowników
     List<User> findAllUsers();
 
-    // wypisanie użytkowników posortowanych po argumencie
-    List<User> findAllUsersOrderByArg(UserField userField, boolean asc);
+    // wypisanie użytkowników posortowanych po adresie email
+    List<User> findAllUsersOrderByEmail(boolean asc);
 }
