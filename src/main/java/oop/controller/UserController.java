@@ -79,12 +79,6 @@ public class UserController implements UserControllerTempl {
     }
     // ------------------------------------------------
 
-
-
-
-
-
-
     @Override
     public void deleteUserById(int userId) {
 
@@ -95,10 +89,9 @@ public class UserController implements UserControllerTempl {
 
     }
 
-
-
     @Override
     public List<User> findAllUsersOrderByArg(UserField userField, boolean asc) {
+
         return null;
     }
 }
