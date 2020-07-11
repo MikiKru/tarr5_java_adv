@@ -4,7 +4,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SimpleStreamApi {
-    List<Double> numbers = new ArrayList<>(Arrays.asList(13.11, 4.333, 6.43, -7., 1.11, 7.66, 9.99999));
+    List<Double> numbers = new ArrayList<>(
+            Arrays.asList(13.11, 4.333, 6.43, -7., 1.11, 7.66, 9.99999)
+    );
     // metoda wypisująca wszystkie liczby jedna pod drugą
     public void getAllNumbers(){
         numbers.stream().forEach(number -> System.out.println(number));
@@ -29,14 +31,21 @@ public class SimpleStreamApi {
     }
     // metoda zwracająca wartość min w liście
     public double getMin(){
-        return numbers.stream()
-                .mapToDouble(value -> Double.valueOf(value))
-                .min()
-                .getAsDouble(); // double
+        if (numbers.stream().mapToDouble(value -> Double.valueOf(value)).min().isPresent()){
+            return numbers.stream().mapToDouble(value -> Double.valueOf(value)).min().getAsDouble();
+        } else {
+            System.out.println("Lista jest pusta");
+            return 0.0;
+        }
     }
     // metoda zwracająca wartość max w liście
     public double getMax(){
-        return numbers.stream().mapToDouble(value -> Double.valueOf(value)).max().getAsDouble();
+        if (numbers.stream().mapToDouble(value -> Double.valueOf(value)).max().isPresent()){
+            return numbers.stream().mapToDouble(value -> Double.valueOf(value)).max().getAsDouble();
+        } else {
+            System.out.println("Lista jest pusta");
+            return 0.0;
+        }
     }
     public static void main(String[] args) {
         SimpleStreamApi ssa = new SimpleStreamApi();
