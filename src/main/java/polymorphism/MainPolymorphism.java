@@ -1,7 +1,13 @@
 package polymorphism;
 
+import oop.controller.UserController;
+import oop.controller.UserControllerTempl;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainPolymorphism {
-    public static void hasModeRooms(Company c1, Company c2){
+    public static void hasMoreRooms(Company c1, Company c2){
         if(c1.getRoomsQuantity() > c2.getRoomsQuantity()){
             System.out.println("Firma: " + c1.getCompanyName() + " posiada więcej pokoi");
         } else if(c1.getRoomsQuantity() == c2.getRoomsQuantity()) {
@@ -19,7 +25,13 @@ public class MainPolymorphism {
         System.out.println("obiekt openSpace1 jest reprezentantem klasy: " + openSpace1.getClass().getName());
         System.out.println(openSpace1);
         // ==================================================
-        
-
+        hasMoreRooms(openSpace1, (Company) openSpaceObject);    // castowanie -> konwersja na typ Company
+        hasMoreRooms(new Company("TTT", 3), openSpace1);
+        // to też jest polimorfizm
+        List<String> names = new ArrayList<>();
+        UserControllerTempl example = new UserController();
+        int a = 5;
+        System.out.println( a / 2 );        // int / int -> int
+        System.out.println( (double)a / 2 );       // int / double -> double
     }
 }
