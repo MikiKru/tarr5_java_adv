@@ -97,7 +97,7 @@ public class Run extends InputOutputController {
                 uc.findAllUsersOrderByEmail(asc).forEach(user -> System.out.println(user));
             } else if(choice.equals("7")){
                 try {
-                    System.out.println("Podaj id użytkownika, którego chcesz usunąć");
+                    System.out.println("Podaj id użytkownika");
                     int userId = Integer.valueOf(scanner.nextLine());
                     Set<Role> roles = new HashSet<>();
                     // wybór ról
