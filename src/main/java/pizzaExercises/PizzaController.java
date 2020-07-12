@@ -45,6 +45,17 @@ public class PizzaController {
                 .sorted(Comparator.comparing(this::calculatePizzaPrice).reversed())
                 .findFirst().get();
     }
+    // metoda zwracająca ilość składników mięsnych danej pizzy
+    public long countMeatIngredients(Pizza pizza){
+        return pizza.getIngredients().stream().filter(Ingredient::isMeat).count();
+    }
+    // metoda zwracająca pizze mięsna posotrowane malejąco po liczbie składników mięsnych
+    public List<Pizza> iLikeMeat(){
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients().stream().anyMatch(Ingredient::isMeat))
+                .sorted(Comparator.comparing(this::countMeatIngredients).reversed())
+                .collect(Collectors.toList());
+    }
 
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
@@ -57,5 +68,7 @@ public class PizzaController {
         System.out.println(pc.findCheapestSpicy());
         System.out.println("NAJDROŻSZA PIZZA WEGE");
         System.out.println(pc.findMostExpensiveVegetarian());
+        System.out.println("PIZZE MIĘSNE POSORTOWANE PO LICZBIE SKŁADNIKÓW MIĘSNYCH");
+        pc.iLikeMeat().forEach(pizza -> System.out.println(pizza + " " + pc.countMeatIngredients(pizza)));
     }
 }
