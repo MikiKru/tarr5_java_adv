@@ -62,11 +62,13 @@ public class PizzaController {
     }
     // metoda grupujące pizze po poziomach ostrości
     public Map<Boolean, List<Pizza>> groupBySpicy(){
-        return null;
+        return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(
+                pizza -> pizza.getIngredients().stream().anyMatch(ingredient -> ingredient.isSpicy()))
+        );
     }
     // metoda grupująca pizze po liczbie składników()
-    public Map<Long, List<Pizza>> groupByIngredientsSize(){
-        return null;
+    public Map<Integer, List<Pizza>> groupByIngredientsSize(){
+        return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> pizza.getIngredients().size()));
     }
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
@@ -82,5 +84,7 @@ public class PizzaController {
         System.out.println("PIZZE MIĘSNE POSORTOWANE PO LICZBIE SKŁADNIKÓW MIĘSNYCH");
         pc.iLikeMeat().forEach(pizza -> System.out.println(pizza + " " + pc.countMeatIngredients(pizza)));
         pc.groupByPrice().forEach((price, pizzas) -> System.out.println(price + " : " + pizzas));
+        pc.groupBySpicy().forEach((spicy, pizzas) -> System.out.println(spicy + " : " + pizzas));
+        pc.groupByIngredientsSize().forEach((ingredients, pizzas) -> System.out.println(ingredients + " : " + pizzas));
     }
 }
