@@ -70,6 +70,16 @@ public class PizzaController {
     public Map<Integer, List<Pizza>> groupByIngredientsSize(){
         return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> pizza.getIngredients().size()));
     }
+    // pizza menu: nazwa (składniki) - cena zł
+    public String formatedMenu(){
+        return Arrays.stream(Pizza.values())
+                .map(pizza -> String.format(
+                        "%15s (%-90s) - %5.2f zł",
+                        pizza.getName(),
+                        pizza.getIngredients().stream().map(Ingredient::getName).collect(Collectors.joining(", ")),
+                        Double.valueOf(calculatePizzaPrice(pizza))
+                        )).collect(Collectors.joining("\n"));
+    }
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
         System.out.println("CENA: " + pc.calculatePizzaPrice(Pizza.MARGHERITA));
@@ -86,5 +96,6 @@ public class PizzaController {
         pc.groupByPrice().forEach((price, pizzas) -> System.out.println(price + " : " + pizzas));
         pc.groupBySpicy().forEach((spicy, pizzas) -> System.out.println(spicy + " : " + pizzas));
         pc.groupByIngredientsSize().forEach((ingredients, pizzas) -> System.out.println(ingredients + " : " + pizzas));
+        System.out.println(pc.formatedMenu());
     }
 }
