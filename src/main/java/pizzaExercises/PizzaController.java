@@ -1,5 +1,7 @@
 package pizzaExercises;
 
+import lambda_stream_optional.InMemoryData;
+
 import javax.xml.transform.Source;
 import java.sql.SQLOutput;
 import java.util.*;
@@ -38,7 +40,10 @@ public class PizzaController {
     }
     // metoda zwracająca najdroższą pizze wegetariańską
     Pizza findMostExpensiveVegetarian(){
-        return null;
+        return Arrays.stream(Pizza.values())
+                .filter(pizza -> pizza.getIngredients().stream().noneMatch(ingredient -> ingredient.isMeat()))
+                .sorted(Comparator.comparing(this::calculatePizzaPrice).reversed())
+                .findFirst().get();
     }
 
     public static void main(String[] args) {
@@ -50,6 +55,7 @@ public class PizzaController {
         pc.getAllPizzasWithPrices();
         System.out.println("NAJTANSZA PIZZA OSTRA");
         System.out.println(pc.findCheapestSpicy());
-
+        System.out.println("NAJDROŻSZA PIZZA WEGE");
+        System.out.println(pc.findMostExpensiveVegetarian());
     }
 }
