@@ -56,7 +56,18 @@ public class PizzaController {
                 .sorted(Comparator.comparing(this::countMeatIngredients).reversed())
                 .collect(Collectors.toList());
     }
-
+    // metoda grupująca pizze po cenie
+    public Map<Integer, List<Pizza>> groupByPrice(){
+        return Arrays.stream(Pizza.values()).collect(Collectors.groupingBy(pizza -> calculatePizzaPrice(pizza)));
+    }
+    // metoda grupujące pizze po poziomach ostrości
+    public Map<Boolean, List<Pizza>> groupBySpicy(){
+        return null;
+    }
+    // metoda grupująca pizze po liczbie składników()
+    public Map<Long, List<Pizza>> groupByIngredientsSize(){
+        return null;
+    }
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
         System.out.println("CENA: " + pc.calculatePizzaPrice(Pizza.MARGHERITA));
@@ -70,5 +81,6 @@ public class PizzaController {
         System.out.println(pc.findMostExpensiveVegetarian());
         System.out.println("PIZZE MIĘSNE POSORTOWANE PO LICZBIE SKŁADNIKÓW MIĘSNYCH");
         pc.iLikeMeat().forEach(pizza -> System.out.println(pizza + " " + pc.countMeatIngredients(pizza)));
+        pc.groupByPrice().forEach((price, pizzas) -> System.out.println(price + " : " + pizzas));
     }
 }
