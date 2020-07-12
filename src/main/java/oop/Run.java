@@ -100,6 +100,9 @@ public class Run extends InputOutputController {
                     System.out.println("Podaj id użytkownika");
                     int userId = Integer.valueOf(scanner.nextLine());
                     Set<Role> roles = new HashSet<>();
+                    if(uc.findUserById(userId) == null){
+                        continue;   // powrót do główengo menu
+                    }
                     // wybór ról
                     while(true){
                         System.out.println("Wybierz rolę (Q-kończę wybór):");
