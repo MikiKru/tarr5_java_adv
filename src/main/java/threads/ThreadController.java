@@ -15,14 +15,17 @@ public class ThreadController {
                 long timeStart = System.currentTimeMillis();
                 while(!numbers.isEmpty()) {
                     try {
-                        Thread.currentThread().sleep(new Random().nextInt(6) * 1000);     // uśpienie wąktu thread na 1s
+//                        Thread.currentThread().sleep(new Random().nextInt(6) * 1000);     // uśpienie wąktu thread na 1s
+                        Thread.currentThread().sleep(1000);
                         synchronized (numbers) {            // synchronizacja - sekcja krytyczna
                             System.out.println("Wątek: " + Thread.currentThread().getName() +
                                     " - wartość: " + numbers.removeFirst() +
                                     " aktualna zawartość: " + numbers);
-                            Thread.currentThread().sleep(new Random().nextInt(10) * 100);
+//                            Thread.currentThread().sleep(new Random().nextInt(10) * 100);
+                            Thread.currentThread().sleep(1000);
                             System.out.println("Jeszcze coś robię");
-                            Thread.currentThread().sleep(new Random().nextInt(10) * 100);
+//                            Thread.currentThread().sleep(new Random().nextInt(10) * 100);
+                            Thread.currentThread().sleep(1000);
                             System.out.println("i jeszcze");
                         }
                     } catch (InterruptedException e) {
@@ -44,7 +47,6 @@ public class ThreadController {
         tc.printNumbers(th1);
         tc.printNumbers(th2);
         tc.printNumbers(th3);
-        Thread.currentThread().sleep(10000);
         System.out.println("Wątek: " +Thread.currentThread().getName());
 
     }
