@@ -22,5 +22,11 @@ public class Main {
         // szablon formatowania daty
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy'r.' '('HH:mm')'");
         System.out.println("sformatowana  data rejestracji to: " + dtf.format(userNoArgs.getRegistrationDateTime()));
+        System.out.println("TASKI");
+        Task task = new Task();
+        Task task1 = new Task("nauka Javy", "programowanie obiektowe", false, userAllArgs);
+        System.out.println(task);
+        System.out.println(task1);
+
     }
 }
