@@ -32,7 +32,18 @@ public interface InMemoryData {
                             new HashSet<>(Arrays.asList(Role.ROLE_VIEWER)),
                             LocalDateTime.of(2020, 5, 5, 13, 10, 10),
                             false,
-                            true)
+                            true),
+                    new User(6,
+                            "Test",
+                            "Test",
+                            "t@t.pl",
+                            "t",
+                            "123-321-123",
+                            Gender.MAN,
+                            new HashSet<>(Arrays.asList(Role.ROLE_USER)),
+                            LocalDateTime.now(),
+                            true,
+                            false)
             )
     );
 }
