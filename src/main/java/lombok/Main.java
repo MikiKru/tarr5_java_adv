@@ -1,6 +1,8 @@
 package lombok;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,5 +19,8 @@ public class Main {
         System.out.println("nowe hasło użytkownika to: " + userNoArgs.getPassword());
         System.out.println("nowy status użytkownika to: " + userAllArgs.isStatus());
         System.out.println("nowa data rejestracji to: " + userNoArgs.getRegistrationDateTime());
+        // szablon formatowania daty
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        System.out.println("sformatowana  data rejestracji to: " + dtf.format(userNoArgs.getRegistrationDateTime()));
     }
 }
