@@ -154,7 +154,6 @@ public class PizzaController {
                 ))
                 .collect(Collectors.joining("\n"));
     }
-
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
         System.out.println("CENA: " + pc.calculatePizzaPrice(Pizza.MARGHERITA));
