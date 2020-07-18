@@ -1,0 +1,21 @@
+package lombok;
+
+import java.time.LocalDateTime;
+
+public class Main {
+    public static void main(String[] args) {
+        // test konstruktorów
+        User userNoArgs = new User();
+        User userAllArgs = new User(1, "test@test.pl", "test", LocalDateTime.now(), true, false);
+        // test toString
+        System.out.println(userNoArgs);
+        System.out.println(userAllArgs);
+        // test getterów i setterów
+        userNoArgs.setPassword("nowe hasło");
+        userNoArgs.setRegistrationDateTime(LocalDateTime.of(2000, 2, 4, 10, 5,5));
+        userAllArgs.setStatus(false);
+        System.out.println("nowe hasło użytkownika to: " + userNoArgs.getPassword());
+        System.out.println("nowy status użytkownika to: " + userAllArgs.isStatus());
+        System.out.println("nowa data rejestracji to: " + userNoArgs.getRegistrationDateTime());
+    }
+}
