@@ -21,19 +21,21 @@ public class ReadWriteExceptionHandler {
                 System.out.println("Wprowadź liczbę (Q - wyjście)");
                 String data = scanner.nextLine();
                 if(data.toUpperCase().equals("Q")){
-//                    fileWriter.close();
                     break;
                 }
-                String s;
                 double number = Double.valueOf(data);
+                if(number == 0){
+                    throw new ArithmeticException();    // sztuczne zgłoszenie wyjątku -> musi być obsłużony
+                }
                 fileWriter.append(String.valueOf(number)+"\n");
-//                fileWriter.close();
             } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("Błąd pliku");
             } catch (InputMismatchException | NumberFormatException e) {
                 e.printStackTrace();
                 System.out.println("Błąd typu danych");
+            } catch (ArithmeticException e){            // obsługa wyjątku wyrzuconego za pomocą klauzuli throw
+                System.out.println("Wprowadzona liczba nie może być 0.0");
             } finally {     // klauzula ta wykonuje się zawsze po bloku try lub dowolnym bloku catch
                 try {
                     fileWriter.close();
