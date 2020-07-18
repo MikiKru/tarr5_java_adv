@@ -108,6 +108,29 @@ public class PizzaController {
                 .collect(Collectors.joining("\n"));
     }
 
+    public double calculatePizzaPriceWithDiscount(Pizza pizza, Pizza pizzaOfTheDay){
+        return pizza.equals(pizzaOfTheDay) ? calculatePizzaPrice(pizza) * 0.5 : calculatePizzaPrice(pizza);
+    }
+    // pizza menu - sortowanie po nazwie
+    public String formatedMenuOrderByPrice(){
+        Random random = new Random();
+        int randomIndex = random.nextInt(Pizza.values().length);
+        Pizza pizzaOfTheDay = Pizza.values()[randomIndex];
+
+        return Arrays.stream(Pizza.values())
+                .sorted(Comparator.comparing(pizza -> calculatePizzaPriceWithDiscount(pizza, pizzaOfTheDay)))
+                .map(pizza -> String.format(
+                        "%15s (%-90s) %5s %4s - %5.2f zł %1s",
+                        pizza.getName(),
+                        pizza.getIngredients().stream().map(Ingredient::getName).collect(Collectors.joining(", ")),
+                        pizza.getIngredients().stream().anyMatch(Ingredient::isSpicy) ? "ostra" : "",
+                        pizza.getIngredients().stream().noneMatch(Ingredient::isMeat) ? "wege" : "",
+                        pizza.equals(pizzaOfTheDay) ? (double) calculatePizzaPrice(pizza) * 0.5 : (double) calculatePizzaPrice(pizza),
+                        pizza.equals(pizzaOfTheDay) ? "*" : ""
+                ))
+                .collect(Collectors.joining("\n"));
+    }
+
     public static void main(String[] args) {
         PizzaController pc = new PizzaController();
         System.out.println("CENA: " + pc.calculatePizzaPrice(Pizza.MARGHERITA));
@@ -128,5 +151,7 @@ public class PizzaController {
         System.out.println(pc.formatedMenu());
         System.out.println("MENU POSOTROWANE PO NAZWIE");
         System.out.println(pc.formatedMenuOrderByName());
+        System.out.println("MENU POSOTROWANE PO CENIE");
+        System.out.println(pc.formatedMenuOrderByPrice());
     }
 }
