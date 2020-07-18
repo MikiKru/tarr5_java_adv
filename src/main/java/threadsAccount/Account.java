@@ -14,7 +14,7 @@ public class Account {
         this.accountSaldo += amount;
     }
     public void getOutcome(double amount){
-        if(amount < accountSaldo) {
+        if(amount <= accountSaldo) {
             this.accountSaldo -= amount;
         } else {
             System.out.println("Operacja niemożliwa do zrealizowania:");
