@@ -27,6 +27,9 @@ public class ReadWriteExceptionHandler {
                 if(number == 0){
                     throw new ArithmeticException();    // sztuczne zgłoszenie wyjątku -> musi być obsłużony
                 }
+                if(number == 13){
+                    throw new MyException();            // utworzenei obiektu i wywołanie kontruktora
+                }
                 fileWriter.append(String.valueOf(number)+"\n");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -34,8 +37,10 @@ public class ReadWriteExceptionHandler {
             } catch (InputMismatchException | NumberFormatException e) {
                 e.printStackTrace();
                 System.out.println("Błąd typu danych");
-            } catch (ArithmeticException e){            // obsługa wyjątku wyrzuconego za pomocą klauzuli throw
+            } catch (ArithmeticException e) {            // obsługa wyjątku wyrzuconego za pomocą klauzuli throw
                 System.out.println("Wprowadzona liczba nie może być 0.0");
+            } catch (MyException e){
+                e.printStackTrace();
             } finally {     // klauzula ta wykonuje się zawsze po bloku try lub dowolnym bloku catch
                 try {
                     fileWriter.close();
