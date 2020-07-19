@@ -11,7 +11,7 @@ public class Client implements Runnable {
     private Account account;
     @Override
     public void run() {
-        int i = 10;
+        int i = 30;
         while(i >= 0){      // pętla wykona się i razy
             try {
                 Thread.sleep(new Random().nextInt(new Random().nextInt(1000)));
@@ -20,7 +20,7 @@ public class Client implements Runnable {
                 if(decision == 0) {
                     account.getOutcome(amount);                         // wypłata z konta
                 } else {
-                    account.addIncome(amount);                          // wpłata na konto
+                    account.addIncome(amount/2);                 // wpłata na konto
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
