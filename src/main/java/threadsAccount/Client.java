@@ -14,7 +14,7 @@ public class Client implements Runnable {
         int i = 30;
         while(i >= 0){      // pętla wykona się i razy
             try {
-                Thread.sleep(new Random().nextInt(new Random().nextInt(1000)));
+                Thread.sleep(new Random().nextInt(new Random().nextInt(1000) * 10));
                 int amount = new Random().nextInt((10) + 1) * 10;       // kwota wpłaty lub wypłaty z konta
                 int decision = new Random().nextInt(2);            // zmienna decydująca o wpłacie lub wypłacie
                 if(decision == 0) {
