@@ -15,10 +15,11 @@ public class Account {
     }
     public void getOutcome(double amount){
         if(amount <= accountSaldo) {
+            System.out.println(Thread.currentThread().getName() + " wypłata: " + amount + " zł");
             this.accountSaldo -= amount;
         } else {
             System.out.println("Operacja niemożliwa do zrealizowania:");
-            System.out.println("Aktualne saldo: " + accountSaldo);
         }
+        System.out.println(Thread.currentThread().getName() + " aktualne saldo: " + accountSaldo);
     }
 }

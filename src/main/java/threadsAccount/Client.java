@@ -13,19 +13,9 @@ public class Client implements Runnable {
     public void run() {
         while(account.getAccountSaldo() > 0){
             try {
-                Thread.sleep(new Random().nextInt(500));
-                int amount = new Random().nextInt(100) + 1;
-                System.out.println("Wątek: " + Thread.currentThread().getName());
-                System.out.printf("Wypłacam z rachunku %s kwotę: %.2fzł\n",
-                        account.getAccountNumber(),
-                        Double.valueOf(amount));
-                Thread.sleep(new Random().nextInt(500));
+                Thread.sleep(new Random().nextInt(new Random().nextInt(1000)));
+                int amount = new Random().nextInt((10) + 1) * 10;
                 account.getOutcome(amount);
-                System.out.printf("Aktualne saldo dla rachunku %s : %.2fzł\n",
-                        account.getAccountNumber(),
-                        Double.valueOf(account.getAccountSaldo()));
-
-                Thread.sleep(new Random().nextInt(500));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
